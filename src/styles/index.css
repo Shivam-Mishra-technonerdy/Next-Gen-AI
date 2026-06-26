@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+:root {
+  /* Light mode palette */
+  --background: #F1F6F4;
+  --surface: #D9E8E2;
+  --card: #D9E8E2;
+  --primary: #FFC801;
+  --secondary: #FF9932;
+  --text: #172B36;
+  --muted: #114C5A;
+  --border: #d2ded9;
+  --accent: #114C5A;
+}
+
+[data-theme='dark'] {
+  /* Dark mode palette */
+  --background: #172B36;
+  --surface: #114C5A;
+  --card: #114C5A;
+  --primary: #FFC801;
+  --secondary: #FF9932;
+  --text: #F1F6F4;
+  --muted: #D9E8E2;
+  --border: #1c353e;
+  --accent: #FFC801;
+}
+
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  
+  --color-brand-bg: var(--background);
+  --color-brand-cta: var(--primary);
+  --color-brand-hover: var(--secondary);
+  --color-brand-text: var(--text);
+  --color-brand-accent: var(--accent);
+  --color-brand-mint: var(--border);
+  --color-card-bg: var(--card);
+}
+
+:root {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--color-brand-bg);
+  color: var(--color-brand-text);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Global 250ms transition for theme colors */
+body, header, nav, section, blockquote, div, p, h1, h2, h3, h4, span, a, button, svg, path, input {
+  transition: background-color 250ms ease-in-out, border-color 250ms ease-in-out, color 250ms ease-in-out, fill 250ms ease-in-out, stroke 250ms ease-in-out, box-shadow 250ms ease-in-out;
+}
+
+/* Scrollbar customizations */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-brand-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Floating Animations */
+@keyframes float {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(3deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+@keyframes float-reverse {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(12px) rotate(-4deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: float-reverse 8s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Slide in animation for mobile hamburger menu */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-down {
+  animation: fadeInDown 0.3s ease-out forwards;
+}
+
+/* Responsive Typography scale matching Stripe, Linear, Vercel */
+@utility text-hero-title {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  font-size: 2.5rem; /* 40px */
+  @media (min-width: 640px) {
+    font-size: 3.5rem; /* 56px */
+  }
+  @media (min-width: 768px) {
+    font-size: 4rem; /* 64px */
+  }
+  @media (min-width: 1024px) {
+    font-size: 4.75rem; /* 76px */
+  }
+}
+
+@utility text-section-title {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  font-size: 1.875rem; /* 30px */
+  @media (min-width: 640px) {
+    font-size: 2.25rem; /* 36px */
+  }
+  @media (min-width: 768px) {
+    font-size: 2.5rem; /* 40px */
+  }
+  @media (min-width: 1024px) {
+    font-size: 3rem; /* 48px */
+  }
+}
+
+@utility text-pricing-value {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-size: 3rem; /* 48px */
+  @media (min-width: 640px) {
+    font-size: 3.75rem; /* 60px */
+  }
+  @media (min-width: 768px) {
+    font-size: 4rem; /* 64px */
+  }
+  @media (min-width: 1024px) {
+    font-size: 4.5rem; /* 72px */
+  }
+}
+
+@utility text-body-scale {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.625; /* leading-relaxed */
+  font-size: 0.875rem; /* 14px */
+  @media (min-width: 768px) {
+    font-size: 1rem; /* 16px */
+  }
+  @media (min-width: 1024px) {
+    font-size: 1.125rem; /* 18px */
+  }
+}
+
+@utility text-button-scale {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  font-size: 0.875rem; /* 14px */
+  @media (min-width: 1024px) {
+    font-size: 1rem; /* 16px */
+  }
+}
